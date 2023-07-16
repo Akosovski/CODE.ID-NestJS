@@ -18,7 +18,6 @@ export class RegionsService {
     console.log();
     return await this.serviceReg.create({
       region_name: body.region_name,
-      photo: body.photo,
     });
   }
 }

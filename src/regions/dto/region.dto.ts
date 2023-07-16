@@ -1,8 +1,6 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
-
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class RegionDto {
-
     @IsNumber()
     @IsNotEmpty()
     public region_id: number;
@@ -10,7 +8,4 @@ export class RegionDto {
     @IsString()
     @IsOptional()
     public region_name: string;
-
-    @IsString()
-    public photo: string;
 }
