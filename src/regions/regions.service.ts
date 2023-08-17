@@ -1,23 +1,61 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { regions } from 'models';
-import { Repository } from 'sequelize-typescript';
+import { InjectRepository } from '@nestjs/typeorm';
+import {
+  IPaginationOptions,
+  Pagination,
+  paginate,
+} from 'nestjs-typeorm-paginate';
+import { Regions } from 'output/entities/Regions';
+import { Repository } from 'typeorm';
+import { RoomI } from './region.interface';
 
 @Injectable()
 export class RegionsService {
-  constructor(@InjectModel(regions) private serviceReg: typeof regions) {}
+  constructor(
+    @InjectRepository(Regions) private serviceReg: Repository<Regions>,
+  ) {}
 
-  async findAll(): Promise<regions[]> {
-    return await this.serviceReg.findAll({});
+  public async findAll(
+    options: IPaginationOptions,
+  ): Promise<Pagination<RoomI>> {
+    const region = await this.serviceReg.createQueryBuilder('regions');
+    return paginate(region, options);
   }
-  async findOne(id): Promise<regions> {
-    console.log();
-    return await this.serviceReg.findOne(id);
+  public async findOne(ids: number) {
+    return await this.serviceReg.findOne({ where: { regionId: ids } });
   }
-  async Create(body): Promise<regions> {
-    console.log();
-    return await this.serviceReg.create({
-      region_name: body.region_name,
-    });
+  public async Insert(name: string) {
+    try {
+      const region = await this.serviceReg.save({
+        regionName: name,
+      });
+      return region;
+    } catch (error) {
+      return error.message;
+    }
+  }
+  public async update(id: number, name: string) {
+    try {
+      const region = await this.serviceReg.update(id, {
+        regionName: name,
+      });
+      return region;
+    } catch (error) {
+      return error.message;
+    }
+  }
+  public async Delete(id: number) {
+    return await this.serviceReg.delete(id);
+  }
+  public async Upload(file, name: string) {
+    try {
+      const region = await this.serviceReg.save({
+        regionName: name,
+        photo: file.originalname,
+      });
+      return region;
+    } catch (error) {
+      return error.message;
+    }
   }
 }

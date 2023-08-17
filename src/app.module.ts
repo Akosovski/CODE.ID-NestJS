@@ -1,26 +1,24 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { SequelizeModule } from '@nestjs/sequelize';
 import { GlobalModule } from './global/global.module';
-import { RegionsController } from './regions/regions.controller';
-import { RegionsService } from './regions/regions.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserService } from './user/user.service';
+import { UserController } from './user/user.controller';
 
 @Module({
   imports: [
-    SequelizeModule.forRoot({
-      dialect: 'postgres',
+    TypeOrmModule.forRoot({
+      type: 'postgres',
       host: 'localhost',
       port: 5432,
       username: 'postgres',
       password: '25651612',
       database: 'HR-DB',
-      models: ['batch24/models/index.ts'],
-      autoLoadModels: true,
+      entities: ['dist/output/entities/*.js'],
+      autoLoadEntities: true,
     }),
     GlobalModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
