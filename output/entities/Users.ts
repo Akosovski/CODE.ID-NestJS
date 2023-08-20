@@ -33,4 +33,11 @@ export class Users {
     length: 250,
   })
   userPass: string | null;
+
+  @Column("character varying", {
+    name: "roles",
+    nullable: true,
+    length: 25,
+  })
+  roles: string | null;
 }

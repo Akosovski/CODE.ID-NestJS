@@ -1,11 +1,4 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { Departments } from "./Departments";
 import { Employees } from "./Employees";
 import { Jobs } from "./Jobs";
@@ -15,15 +8,11 @@ import { Jobs } from "./Jobs";
 })
 @Entity("job_history", { schema: "public" })
 export class JobHistory {
-  @Column("integer", { name: "employee_id", nullable: true })
-  employeeId: number | null;
+  @Column("integer", { primary: true, name: "employee_id" })
+  employeeId: number;
 
-  @Column("character varying", {
-    name: "start_date",
-    nullable: true,
-    length: 255,
-  })
-  startDate: string | null;
+  @Column("date", { primary: true, name: "start_date" })
+  startDate: string;
 
   @Column("character varying", {
     name: "end_date",
@@ -31,9 +20,6 @@ export class JobHistory {
     length: 255,
   })
   endDate: string | null;
-
-  @PrimaryGeneratedColumn({ type: "integer", name: "id" })
-  id: number;
 
   @ManyToOne(() => Departments, (departments) => departments.jobHistories, {
     onDelete: "CASCADE",
@@ -76,6 +62,83 @@ export class JobHistory {
   })
   @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
   department_6: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistories7, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  department_7: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistories8, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  department_8: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistories9, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI2: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors2, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI3: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors3, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI4: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors4, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI5: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors5, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI6: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors6, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI7: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors7, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI8: Departments;
+
+  @ManyToOne(() => Departments, (departments) => departments.jobHistors8, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "department_id", referencedColumnName: "departmentId" }])
+  departmentI9: Departments;
 
   @ManyToOne(() => Employees, (employees) => employees.jobHistories, {
     onDelete: "CASCADE",
@@ -125,4 +188,81 @@ export class JobHistory {
   })
   @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
   job_6: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistories7, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  job_7: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistories8, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  job_8: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistories9, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI2: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors2, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI3: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors3, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI4: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors4, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI5: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors5, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI6: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors6, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI7: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors7, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI8: Jobs;
+
+  @ManyToOne(() => Jobs, (jobs) => jobs.jobHistors8, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "job_id", referencedColumnName: "jobId" }])
+  jobI9: Jobs;
 }

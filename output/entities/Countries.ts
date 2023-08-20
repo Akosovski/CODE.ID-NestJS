@@ -9,7 +9,6 @@ import {
 import { Regions } from "./Regions";
 import { Locations } from "./Locations";
 
-@Index("pk_country_id", ["countryId"], { unique: true })
 @Index("countries_pkey", ["countryId"], { unique: true })
 @Entity("countries", { schema: "public" })
 export class Countries {
@@ -19,7 +18,7 @@ export class Countries {
   @Column("character varying", {
     name: "country_name",
     nullable: true,
-    length: 40,
+    length: 24,
   })
   countryName: string | null;
 
@@ -65,6 +64,83 @@ export class Countries {
   @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
   region_6: Regions;
 
+  @ManyToOne(() => Regions, (regions) => regions.countries7, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  region_7: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countries8, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  region_8: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countries9, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie10, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI2: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie11, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI3: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie12, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI4: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie13, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI5: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie14, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI6: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie15, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI7: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie16, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI8: Regions;
+
+  @ManyToOne(() => Regions, (regions) => regions.countrie17, {
+    onDelete: "SET NULL",
+    onUpdate: "CASCADE",
+  })
+  @JoinColumn([{ name: "region_id", referencedColumnName: "regionId" }])
+  regionI9: Regions;
+
   @OneToMany(() => Locations, (locations) => locations.country)
   locations: Locations[];
 
@@ -82,4 +158,37 @@ export class Countries {
 
   @OneToMany(() => Locations, (locations) => locations.country_6)
   locations6: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.country_7)
+  locations7: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.country_8)
+  locations8: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI)
+  locations9: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI2)
+  location10: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI3)
+  location11: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI4)
+  location12: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI5)
+  location13: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI6)
+  location14: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI7)
+  location15: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI8)
+  location16: Locations[];
+
+  @OneToMany(() => Locations, (locations) => locations.countryI9)
+  location17: Locations[];
 }

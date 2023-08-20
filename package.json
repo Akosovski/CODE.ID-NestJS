@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "db": "typeorm-model-generator -h localhost -d HR-DB -p 5432 -u postgres -x 25651612 -e postgres",
+    "db": "typeorm-model-generator -h localhost -d rev -p 5432 -u postgres -x admin -e postgres -s hr,master,users,sales,payment,jobhire,curriculum,bootcamp",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",

@@ -22,6 +22,7 @@ export class UserService {
         userEmail: fields.email,
         userPhone: fields.phone,
         userPass: hashPassword,
+        roles: fields.roles,
       });
       const { userPass, ...result } = user;
       return result;
@@ -47,6 +48,7 @@ export class UserService {
       id: user.userId,
       phone: user.userPhone,
       email: user.userEmail,
+      roles: user.roles,
     };
     return {
       access_token: this.jwtService.sign(payload),

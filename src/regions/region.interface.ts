@@ -1,6 +1,6 @@
 import { Countries } from 'output/entities/Countries';
 
-export interface RoomI {
+export class RoomI {
   regionId?: number;
   regionName?: string;
   photo?: string;
