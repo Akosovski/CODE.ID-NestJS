@@ -1,9 +1,0 @@
-1:n, region_id, region_id, regions, countries
-1:n, country_id, country_id, countries, locations
-1:n, location_id, location_id, locations, departments
-1:n, department_id, department_id, departments, employees
-1:n, job_id, job_id, jobs, employees
-1:n, employee_id, manager_id, employees, employees
-1:n, employee_id, manager_id, employees, departments
-1:n, job_id, job_id, jobs, job_history
-1:n, department_id, department_id, departments, job_history
