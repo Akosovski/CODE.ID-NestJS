@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="sticky-container">
+    {% include 'partials/_navbar.html' %}
+</div> 
+{% include 'partials/_messages.html' %}
+
+
+<div class="sticky-container">
+    {% include 'partials/_footer.html' %}
+</div> 
+{% endblock content %}
