@@ -1,0 +1,51 @@
+Deploying Django Project Step by Step
+-------------------------------------
+
+1. Clone Project Repository
+2. Install virtual environment : 
+	This step is done only if you haven't installed venv yet, to check -> Run in Terminal : pip list
+	-> Run in Terminal : pip install virtualenv
+	-> Run in Terminal : virtualenv -p python3 venv
+	-> There will be a venv folder inside the project
+	-> !IMPORTANT! You must enable virtual environment before running any command in the project
+	-> To run venv, Run in Terminal : venv\Scripts\activate
+	-> There will be (venv) on the terminal, that means you are inside the environment
+3. Installing Requirements in virtual environment :
+	This step is done only if you haven't installed the required modules, to check -> Run in Terminal : pip list
+	-> Before installing you may check the required modules in the requirements.txt file
+	-> Run in Terminal : pip install -r requirements.txt
+	-> Check for Successful Installation
+4. Install dotenv & set database for Postgres (First time only) :
+	-> pip install python-dotenv
+	-> Import and Initialise python-dotenv in settings.py :
+		=> from dotenv import load_dotenv
+		   import os
+                   load_dotenv()
+	-> Create a .env file at the root beside the manage.py
+	-> Set .env with credentials :
+		=> DB_ENGINE=django.db.backends.postgresql
+		   DB_NAME= DB Name
+		   DB_USER= postgres
+		   DB_PASSWORD= Postgre Password
+		   DB_HOST= localhost
+	-> Assign the Environment Variables in the settings.py :
+
+	DATABASES = {
+   		'default': {
+       			'ENGINE': os.environ.get('DB_ENGINE'),
+       			'NAME': os.environ.get('DB_NAME'),
+       			'USER': os.environ.get('DB_USER'),
+       			'PASSWORD': os.environ.get('DB_PASSWORD'),
+       			'HOST': os.environ.get('DB_HOST'),
+   		     }
+		}
+
+	-> Add the .env file to .gitignore file
+5. Migrate Database to Postgre :
+	-> Run in Terminal : python manage.py migrate
+	-> Check for Successful Migration
+	-> (Optional) Adding migrations to app example :
+		Run in Terminal : python manage.py migrate auth
+6. Running the project :
+	-> Run in Terminal : python manage.py runserver
+	-> To Deactivate press Ctrl + C in Terminal
