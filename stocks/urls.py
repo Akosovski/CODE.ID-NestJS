@@ -8,4 +8,5 @@ from django.views.decorators.csrf import csrf_exempt
 urlpatterns = [
     path('', views.index, name="stocks"),
     path('authentication/', include('authentication.urls')),
+    path('add-product', views.add_product, name="add-product"),
 ]
