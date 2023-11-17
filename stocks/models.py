@@ -12,7 +12,7 @@ class Stock(models.Model):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     stock = models.IntegerField(default=1)
     product_image = models.ImageField(null=True, blank=True, upload_to="images/")
-    product_stack = models.IntegerField(null=True, blank=True)
+    product_stack = models.IntegerField(default=1)
 
     def __str__(self):
         return self.product_name

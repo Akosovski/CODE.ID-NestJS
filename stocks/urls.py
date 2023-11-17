@@ -9,5 +9,7 @@ urlpatterns = [
     path('', views.index, name="stocks"),
     path('authentication/', include('authentication.urls')),
     path('add-stock', views.add_stock, name="add-stock"),
+    path('detail-stock/<int:id>', views.detail_stock, name="detail-stock"),
+    path('edit-stock/<int:id>', views.edit_stock, name="edit-stock"),
     path('close-modal', views.close_modal, name="close-modal"),
 ]
