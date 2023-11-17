@@ -4,12 +4,42 @@
 {% block content %}
 <div class="sticky-container">
     {% include 'partials/_navbar.html' %}
-</div> 
-{% include 'partials/_messages.html' %}
+</div>
 
 <div class="px-4 py-5 mt-5 mb-3 text-center">
+    {% include 'partials/_messages.html' %}
     <form name="edit-stock" action="{% url 'edit-stock' stocks.id %}" method="POST">
         {% csrf_token %}
+
+        <!-- Form Inputs -->
+        <div class="d-grid p-2 tambah-stock">
+            <br>
+                <p class="text-dark fs-4" style="font-weight: bold">Ubah Detail Produk</p>
+                <div class="input-group rounded">
+                    <span class="input-group-text">Nama Produk</span>
+                    <input type="text" class="form-control" name="product_name" value="{{values.product_name}}" id="namefield" placeholder="Nama?" required>
+                </div>
+
+                <div class="input-group rounded mt-4">
+                    <span class="input-group-text">Stock</span>
+                    <input type="number" class="form-control" name="stock" value="{{values.stock}}" id="stockfield" placeholder="Stock?" required>
+                </div>
+
+                <div class="input-group rounded mt-4">
+                    <span class="input-group-text">Code</span>
+                    <input type="text" class="form-control" name="category" value="{{values.code}}" id="codefield" placeholder="Code?" required>
+                </div>
+
+                <div class="input-group rounded mt-4">
+                    <label class="input-group-text" for="inputGroupFile01">Upload Gambar</label>
+                    <input type="file" class="form-control" id="inputGroupFile01">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid p-1 mt-4">
+                    <input type="submit" value="Ubah" class="btn btn-success px-5 w-auto xpadd submit-button rounded">
+                </div>  
+        </div>
     </form>
 </div>
 

@@ -131,14 +131,28 @@
     margin-right: 20%;
 }
 
-.submit-button{
+.submit-button {
     margin-left: 30%;
     margin-right: 30%;
+}
+
+.detail-row{
+    justify-content: space-between;
+}
+
+.detail-text{
+    text-align: left;
 }
 
 @media only screen and (max-width: 750px) {
     .tambah-stock, .submit-button{
         margin-left: 0px;
         margin-right: 0px;
+    }
+    .detail-row{
+        justify-content: center;
+    }
+    .detail-text{
+        text-align: center;
     }
 }

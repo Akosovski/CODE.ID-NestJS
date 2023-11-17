@@ -4,10 +4,10 @@
 {% block content %}
 <div class="sticky-container">
     {% include 'partials/_navbar.html' %}
-</div> 
-{% include 'partials/_messages.html' %}
+</div>
 
 <div class="px-4 py-5 mt-5 mb-3 text-center">
+    {% include 'partials/_messages.html' %}
     <form name="add-stock" action="{% url 'add-stock' %}" method="POST">
         {% csrf_token %}
     

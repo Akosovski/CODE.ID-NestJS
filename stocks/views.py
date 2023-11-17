@@ -87,15 +87,15 @@ def edit_stock(request, id):
 
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
-            return render(request, 'stocks/add_stock.html')
+            return render(request, 'stocks/edit_stock.html', context)
                 
         if not stock:
             messages.error(request, 'Stock Tidak Boleh Kosong!')
-            return render(request, 'stocks/add_stock.html')
+            return render(request, 'stocks/edit_stock.html', context)
 
         if not code:
             messages.error(request, 'Kategori Harus Dipilih!')
-            return render(request, 'stocks/add_stock.html')
+            return render(request, 'stocks/edit_stock.html', context)
         
         stocks.owner = request.user
         stocks.product_name = product_name
