@@ -1,29 +1,31 @@
 <nav class="navbar bg-light fixed-top border-bottom border-dark">
   <div class="container-fluid">
-    <img src="https://cdn.discordapp.com/attachments/995173807750926346/1174915813929652224/Tieks_Fashion.png?ex=6569549e&is=6556df9e&hm=ac630ace2ca78a5a9188321b18ab4ebc00755676d5a9e15afa2b21ef9f9e77ec&"
-     alt="twbs" width="32" height="32" class="mt-0 rounded-circle flex-shrink-0">
-    <h3 class="fw-bold mt-2 navbar-brand" style="margin-left: 45px;">Tiek's Fashion - Product Stock</h3>
+    <h3 class="fw-bold mt-2 navbar-brand" style="margin-left: 45px;"></h3>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-        <h4 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">ProductStock</h4>
+        <h4 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">Product Stock</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
           <li class="nav-item">
-            <a class="nav-link active fs-5" aria-current="page" href="{% url 'stocks' %}">Dashboard</a>
+            <a class="nav-link active fs-5" aria-current="page" href="{% url 'stocks' %}">Daftar Stock</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active fs-5" aria-current="page" href="#">Stock</a>
+            <a class="nav-link active fs-5" aria-current="page" href="{% url 'add-stock' %}">Tambah Stock</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active fs-5" aria-current="page" href="#">Search</a>
+            <a class="nav-link active fs-5" aria-current="page" href="#">Cari Stock</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active fs-5" aria-current="page" href="#">Barang Keluar</a>
           </li>
 
           <form action="{% url 'logout' %}" method="POST">

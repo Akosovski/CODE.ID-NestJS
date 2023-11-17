@@ -125,3 +125,20 @@
 #table-container{
     min-width: 800px;
 }
+
+.tambah-stock{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.submit-button{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+@media only screen and (max-width: 750px) {
+    .tambah-stock, .submit-button{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
