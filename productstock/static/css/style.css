@@ -144,6 +144,19 @@
     text-align: left;
 }
 
+.product-image{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.product-image-container{
+    transition: all 300ms;
+}
+
+.product-image-container:hover{
+    filter: brightness(50%);
+}
+
 @media only screen and (max-width: 750px) {
     .tambah-stock, .submit-button{
         margin-left: 0px;

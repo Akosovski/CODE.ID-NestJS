@@ -42,7 +42,7 @@ def add_stock(request):
         product_name = request.POST.get('product_name')
         code = request.POST.get('category') + str(stacker)
         stock = request.POST.get('stock')
-        product_image = request.POST.get('product_image')
+        product_image = request.FILES.get('product_image')
 
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
@@ -108,6 +108,11 @@ def edit_stock(request, id):
 
     return render(request, 'stocks/edit_stock.html')
 
-def close_modal(request):
-    return render(request, 'stocks/add_stock.html')
- 
+def delete_stock(request, id):
+    stock = Stock.objects.get(pk=id)
+    if stock.product_image:
+        stock.product_image.delete()
+    stock.delete()
+
+    messages.success(request, 'Produk Telah Dihapus!')
+    return redirect('stocks')

@@ -2,6 +2,7 @@ from . import views
 from django.urls import path, include
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 from django.conf.urls.static import static
 from django.views.decorators.csrf import csrf_exempt
 
@@ -11,5 +12,5 @@ urlpatterns = [
     path('add-stock', views.add_stock, name="add-stock"),
     path('detail-stock/<int:id>', views.detail_stock, name="detail-stock"),
     path('edit-stock/<int:id>', views.edit_stock, name="edit-stock"),
-    path('close-modal', views.close_modal, name="close-modal"),
-]
+    path('delete-stock/<int:id>', views.delete_stock, name="delete-stock"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

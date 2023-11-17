@@ -13,6 +13,13 @@
 
 <div class="list-group w-auto">
     <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <div class="d-flex gap-2 w-100 justify-content-center">
+            <a href="/{{stock.product_image}}" class="product-image-container">
+                <img class="product-image" src="/{{stock.product_image}}" alt="{{stock.product_name}}">
+            </a>
+        </div>
+    </div>
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
         <div class="d-flex gap-2 w-100 detail-row">
             <div class="detail-text">
                 <h6 class="mb-0 fw-bold">Nama Produk</h6>
@@ -59,8 +66,28 @@
     </div>
 </div> 
 
-<div class="mt-4 d-flex justify-content-center">
-    <a href="{% url 'edit-stock' stock.id %}" class="btn btn-md btn-dark w-auto xpadd">Ubah Detail Produk</a>
+<div class="mt-5 d-flex justify-content-center">
+    <a href="{% url 'edit-stock' stock.id %}" class="btn btn-md btn-dark w-auto xpadd me-5">Ubah Detail Produk</a>
+    <button type="button" class="btn btn-md btn-danger w-auto xpadd" data-bs-toggle="modal" data-bs-target="#exampleModal">Hapus Produk</button>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="exampleModalLabel">Konfirmasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus produk ini?
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'delete-stock' stock.id %}" class="btn btn-danger xpadd confirmation-button">Ya</a>
+                <button type="button" class="btn btn-dark xpadd confirmation-button" data-bs-dismiss="modal">Tidak</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="sticky-container">
