@@ -22,8 +22,11 @@ class LoginView(View):
             if user:
                 if user.is_active:
                     auth.login(request, user)
+                    messages.success(request, 'Anda Berhasil Masuk!')
                     return redirect('stocks')
+            messages.error(request, 'Kredensial Tidak Sesuai!')
             return render(request, 'authentication/login.html')
+        messages.error(request, 'Kredensial Tidak Sesuai!')
         return render(request, 'authentication/login.html')
 
 class LogoutView(View):
