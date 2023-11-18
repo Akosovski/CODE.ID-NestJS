@@ -16,10 +16,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-erc=i0q5mlnb&0+j_ey385=q@3r2h85rt-%8%jfx4m6o=2l%))'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'productstock.urls'
@@ -67,10 +68,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'productstock.wsgi.application'
 
+# CSRF_TRUSTED_ORIGINS=['*']
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# Database for development environments only
 DATABASES = {
    'default': {
        'ENGINE': os.environ.get('DB_ENGINE'),
@@ -80,6 +83,11 @@ DATABASES = {
        'HOST': os.environ.get('DB_HOST'),
    }
 }
+
+# Database for production
+# DATABASES = {
+#     "default": dj_database_url.config(default=os.environ.get('DB_URL'), conn_max_age=1800)
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -121,6 +129,7 @@ MEDIA_ROOT = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [BASE_DIR, 'productstock/static']
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
