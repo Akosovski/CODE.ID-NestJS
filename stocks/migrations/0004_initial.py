@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('code', models.CharField(max_length=255)),
                 ('product_name', models.CharField(max_length=255)),
                 ('description', models.TextField()),
-                ('dateadded', models.DateTimeField(auto_now_add=True)),
-                ('dateupdated', models.DateTimeField(auto_now=True)),
+                ('dateadded', models.DateTimeField(auto_now=False)),
+                ('dateupdated', models.DateTimeField(auto_now=False)),
                 ('stock', models.IntegerField(default=1)),
                 ('product_image', models.ImageField(blank=True, null=True, upload_to='images/')),
                 ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
@@ -31,8 +31,3 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
-migrations.AddField(
-            model_name='stock',
-            name='product_stack',
-            field=models.IntegerField(blank=True, null=True),
-        ),

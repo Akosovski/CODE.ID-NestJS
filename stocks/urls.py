@@ -13,4 +13,5 @@ urlpatterns = [
     path('detail-stock/<int:id>', views.detail_stock, name="detail-stock"),
     path('edit-stock/<int:id>', views.edit_stock, name="edit-stock"),
     path('delete-stock/<int:id>', views.delete_stock, name="delete-stock"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

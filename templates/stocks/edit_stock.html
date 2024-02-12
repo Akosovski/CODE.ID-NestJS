@@ -21,13 +21,18 @@
                 </div>
 
                 <div class="input-group rounded mt-4">
+                    <span class="input-group-text">Deskripsi</span>
+                    <input type="text" class="form-control" name="description" value="{{values.description}}" id="descriptionfield" placeholder="Deskripsi?" required>
+                </div>
+
+                <div class="input-group rounded mt-4">
                     <span class="input-group-text">Stock</span>
                     <input type="number" class="form-control" name="stock" value="{{values.stock}}" id="stockfield" placeholder="Stock?" required>
                 </div>
 
                 <div class="input-group rounded mt-4">
                     <span class="input-group-text">Code</span>
-                    <input type="text" class="form-control" name="category" value="{{values.code}}" id="codefield" placeholder="Code?" required>
+                    <input type="text" class="form-control" name="category" value="{{values.code}}" id="codefield" placeholder="Code?" readonly required>
                 </div>
 
                 <!-- <div class="input-group rounded mt-4">

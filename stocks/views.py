@@ -1,6 +1,7 @@
 from dataclasses import field
 from django.db import models
 from django.db.models import Sum
+from django.utils import timezone
 from .models import Stock
 from django.contrib.auth.decorators import login_required
 from django.contrib.postgres.search import SearchVector
@@ -40,12 +41,17 @@ def add_stock(request):
     if request.method == 'POST':
 
         product_name = request.POST.get('product_name')
+        description = request.POST.get('description')
         code = request.POST.get('category') + str(stacker)
         stock = request.POST.get('stock')
         # product_image = request.FILES.get('product_image')
 
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
+            return render(request, 'stocks/index.html')
+        
+        if not description:
+            messages.error(request, 'Deskripsi Tidak Boleh Kosong!')
             return render(request, 'stocks/index.html')
                 
         if not stock:
@@ -56,7 +62,16 @@ def add_stock(request):
             messages.error(request, 'Kategori Harus Dipilih!')
             return render(request, 'stocks/index.html')
 
-        Stock.objects.create(owner=request.user, code=code, product_name=product_name, stock=stock, product_stack=stacker)
+        Stock.objects.create(
+            owner=request.user, 
+            code=code, 
+            product_name=product_name, 
+            description=description,
+            stock=stock, 
+            product_stack=stacker,
+            dateadded=timezone.now(),
+            dateupdated=timezone.now()
+        )
         messages.success(request, 'Pengadaan Produk Sukses!')
         
     return render(request, 'stocks/add_stock.html')
@@ -81,6 +96,7 @@ def edit_stock(request, id):
 
     if request.method == 'POST':
         product_name = request.POST.get('product_name')
+        description = request.POST.get('description')
         code = request.POST.get('code')
         stock = request.POST.get('stock')
         # product_image = request.POST.get('product_image')
@@ -88,20 +104,23 @@ def edit_stock(request, id):
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
             return render(request, 'stocks/edit_stock.html', context)
+        
+        if not description:
+            messages.error(request, 'Deskripsi Tidak Boleh Kosong!')
+            return render(request, 'stocks/index.html')
                 
         if not stock:
             messages.error(request, 'Stock Tidak Boleh Kosong!')
             return render(request, 'stocks/edit_stock.html', context)
         
-        if code:
-            stocks.code = code
-        
         stocks.owner = request.user
         stocks.product_name = product_name
         stocks.stock = stock
+        stocks.code = code
+        stocks.dateupdated = timezone.now()
         # stocks.product_image = product_image
 
-        stocks.save()
+        stocks.save(update_fields=['owner', 'product_name', 'description', 'stock', 'dateupdated'])
         messages.success(request, 'Perubahan Produk Sukses!')
         return redirect('stocks')
 
