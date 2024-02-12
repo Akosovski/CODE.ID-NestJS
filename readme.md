@@ -22,4 +22,4 @@
 
 ## Upcoming Features ✨
 
-- Search Product
+- Product Tracker
