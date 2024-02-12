@@ -1,6 +1,7 @@
 from dataclasses import field
 from django.db import models
 from django.db.models import Sum
+from django.db.models import Q
 from django.utils import timezone
 from .models import Stock
 from django.contrib.auth.decorators import login_required
@@ -83,6 +84,30 @@ def detail_stock(request, id):
         'stock': stock
     }
     return render(request, 'stocks/detail_stock.html', context)
+
+@login_required(login_url = '/authentication/login')
+def search_stock(request):
+    if request.method == 'GET':
+        searcher = ""
+        context = {
+            'searcher': searcher,
+        }
+        return render(request, 'stocks/search_stock.html', context)
+
+    if request.method == 'POST':
+        searcher = request.POST.get('search')
+        selector = request.POST.get('selector')
+        stocks = Stock.objects.annotate(search=SearchVector(selector)).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
+        paginator = Paginator(stocks, 15)
+        page_number = request.GET.get('page')
+        page_obj = Paginator.get_page(paginator, page_number)
+    
+        context = {
+            'stocks': stocks,
+            'searcher': searcher,
+            'page_obj': page_obj,
+        }
+        return render(request, 'stocks/search_stock.html', context)
     
 @login_required(login_url = '/authentication/login')
 def edit_stock(request, id):
