@@ -42,7 +42,7 @@ def add_stock(request):
         product_name = request.POST.get('product_name')
         code = request.POST.get('category') + str(stacker)
         stock = request.POST.get('stock')
-        product_image = request.FILES.get('product_image')
+        # product_image = request.FILES.get('product_image')
 
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
@@ -56,7 +56,7 @@ def add_stock(request):
             messages.error(request, 'Kategori Harus Dipilih!')
             return render(request, 'stocks/index.html')
 
-        Stock.objects.create(owner=request.user, code=code, product_name=product_name, stock=stock, product_stack=stacker, product_image=product_image)
+        Stock.objects.create(owner=request.user, code=code, product_name=product_name, stock=stock, product_stack=stacker)
         messages.success(request, 'Pengadaan Produk Sukses!')
         
     return render(request, 'stocks/add_stock.html')
@@ -83,7 +83,7 @@ def edit_stock(request, id):
         product_name = request.POST.get('product_name')
         code = request.POST.get('code')
         stock = request.POST.get('stock')
-        product_image = request.POST.get('product_image')
+        # product_image = request.POST.get('product_image')
 
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
@@ -92,15 +92,14 @@ def edit_stock(request, id):
         if not stock:
             messages.error(request, 'Stock Tidak Boleh Kosong!')
             return render(request, 'stocks/edit_stock.html', context)
-
-        if not code:
-            messages.error(request, 'Kategori Harus Dipilih!')
-            return render(request, 'stocks/edit_stock.html', context)
+        
+        if code:
+            stocks.code = code
         
         stocks.owner = request.user
         stocks.product_name = product_name
         stocks.stock = stock
-        stocks.code = code
+        # stocks.product_image = product_image
 
         stocks.save()
         messages.success(request, 'Perubahan Produk Sukses!')

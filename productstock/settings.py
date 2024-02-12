@@ -19,7 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -73,20 +74,20 @@ CSRF_TRUSTED_ORIGINS=['https://tieksfashion-productstock.up.railway.app']
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # Database for development environments only
-# DATABASES = {
-#    'default': {
-#        'ENGINE': os.environ.get('DB_ENGINE'),
-#        'NAME': os.environ.get('DB_NAME'),
-#        'USER': os.environ.get('DB_USER'),
-#        'PASSWORD': os.environ.get('DB_PASSWORD'),
-#        'HOST': os.environ.get('DB_HOST'),
-#    }
-# }
+DATABASES = {
+   'default': {
+       'ENGINE': os.environ.get('DB_ENGINE'),
+       'NAME': os.environ.get('DB_NAME'),
+       'USER': os.environ.get('DB_USER'),
+       'PASSWORD': os.environ.get('DB_PASSWORD'),
+       'HOST': os.environ.get('DB_HOST'),
+   }
+}
 
 # Database for production environments
-DATABASES = {
-    "default": dj_database_url.config(default=os.environ.get('DB_URL'), conn_max_age=1800)
-}
+# DATABASES = {
+#     "default": dj_database_url.config(default=os.environ.get('DB_URL'), conn_max_age=1800)
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -123,12 +124,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_ROOT = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 STATICFILES_DIRS = [BASE_DIR, 'productstock/static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# MEDIA_ROOT = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
