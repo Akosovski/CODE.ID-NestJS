@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -68,26 +68,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'productstock.wsgi.application'
 
-# CSRF_TRUSTED_ORIGINS=['*']
+CSRF_TRUSTED_ORIGINS=['https://productstock-production.up.railway.app']
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # Database for development environments only
-DATABASES = {
-   'default': {
-       'ENGINE': os.environ.get('DB_ENGINE'),
-       'NAME': os.environ.get('DB_NAME'),
-       'USER': os.environ.get('DB_USER'),
-       'PASSWORD': os.environ.get('DB_PASSWORD'),
-       'HOST': os.environ.get('DB_HOST'),
-   }
-}
-
-# Database for production
 # DATABASES = {
-#     "default": dj_database_url.config(default=os.environ.get('DB_URL'), conn_max_age=1800)
+#    'default': {
+#        'ENGINE': os.environ.get('DB_ENGINE'),
+#        'NAME': os.environ.get('DB_NAME'),
+#        'USER': os.environ.get('DB_USER'),
+#        'PASSWORD': os.environ.get('DB_PASSWORD'),
+#        'HOST': os.environ.get('DB_HOST'),
+#    }
 # }
+
+# Database for production environments
+DATABASES = {
+    "default": dj_database_url.config(default=os.environ.get('DB_URL'), conn_max_age=1800)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
