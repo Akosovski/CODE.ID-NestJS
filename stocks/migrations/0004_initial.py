@@ -21,7 +21,6 @@ class Migration(migrations.Migration):
                 ('code', models.CharField(max_length=255)),
                 ('product_name', models.CharField(max_length=255)),
                 ('description', models.TextField()),
-                ('product_price', models.DecimalField(max_digits=12, decimal_places=2)),
                 ('dateadded', models.DateTimeField(auto_now=False)),
                 ('dateupdated', models.DateTimeField(auto_now=False)),
                 ('stock', models.IntegerField(default=1)),

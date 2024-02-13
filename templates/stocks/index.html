@@ -21,7 +21,7 @@
                         <th>Nama</th>
                         <th>Harga</th>
                         <th>Stock</th>
-                        <th>Tanggal Diperbaharui</th>
+                        <th>Size</th>
                     </tr>
                 </thead>
                 {% if stocks.count %}
@@ -32,7 +32,11 @@
                             <td>{{stock.product_name}}</td>
                             <td>{{stock.product_price}}</td>
                             <td>{{stock.stock}}</td>
-                            <td>{{stock.dateupdated}}</td>
+                            {% if stock.size == null %}
+                                <td class="text-muted">-</td>
+                            {% else %}
+                                <td>{{stock.size}}</td>
+                            {% endif %}
                             <td><a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-sm xpadd">Detail Produk</a></td>
                         </tr>
                     {% endfor %}
