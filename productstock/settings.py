@@ -74,20 +74,20 @@ CSRF_TRUSTED_ORIGINS=['https://tieksfashion-productstock.up.railway.app']
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # Database for development environments only
-DATABASES = {
-   'default': {
-       'ENGINE': os.environ.get('DB_ENGINE'),
-       'NAME': os.environ.get('DB_NAME'),
-       'USER': os.environ.get('DB_USER'),
-       'PASSWORD': os.environ.get('DB_PASSWORD'),
-       'HOST': os.environ.get('DB_HOST'),
-   }
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': os.environ.get('DB_ENGINE'),
+#        'NAME': os.environ.get('DB_NAME'),
+#        'USER': os.environ.get('DB_USER'),
+#        'PASSWORD': os.environ.get('DB_PASSWORD'),
+#        'HOST': os.environ.get('DB_HOST'),
+#    }
+# }
 
 # Database for production environments
-# DATABASES = {
-#     "default": dj_database_url.config(default=os.environ.get('DB_URL'), conn_max_age=1800)
-# }
+DATABASES = {
+    "default": dj_database_url.config(default=os.environ.get('DB_URL'), conn_max_age=1800)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
