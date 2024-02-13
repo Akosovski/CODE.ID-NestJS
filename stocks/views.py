@@ -45,6 +45,7 @@ def add_stock(request):
         description = request.POST.get('description')
         code = request.POST.get('category') + str(stacker)
         stock = request.POST.get('stock')
+        size = request.POST.get('size')
         product_price = request.POST.get('product_price')
         # product_image = request.FILES.get('product_image')
 
@@ -74,6 +75,7 @@ def add_stock(request):
             product_name=product_name, 
             product_price=product_price, 
             description=description,
+            size=size,
             stock=stock, 
             product_stack=stacker,
             dateadded=timezone.now(),
