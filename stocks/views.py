@@ -1,7 +1,6 @@
 from dataclasses import field
 from django.db import models
-from django.db.models import Sum
-from django.db.models import Q
+from django.db.models import F, Q, Sum, ExpressionWrapper, fields
 from django.utils import timezone
 from .models import Stock
 from django.contrib.auth.decorators import login_required
@@ -15,8 +14,14 @@ from django.template.loader import render_to_string
 
 @login_required(login_url = '/authentication/login')
 def index(request):
-
     stocks = Stock.objects.all()
+    
+    stocks = stocks.annotate(
+        total_stock=ExpressionWrapper(
+            F('stock_S') + F('stock_M') + F('stock_L') + F('stock'),
+            output_field=fields.IntegerField()
+        )
+    )
     paginator = Paginator(stocks, 10)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
@@ -110,7 +115,14 @@ def search_stock(request):
     if request.method == 'POST':
         searcher = request.POST.get('search')
         selector = request.POST.get('selector')
-        stocks = Stock.objects.annotate(search=SearchVector(selector)).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
+
+        stocks = Stock.objects.annotate(
+        total_stock=ExpressionWrapper(
+                F('stock_S') + F('stock_M') + F('stock_L') + F('stock'),
+                output_field=fields.IntegerField()
+            )
+        ).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
+        
         paginator = Paginator(stocks, 15)
         page_number = request.GET.get('page')
         page_obj = Paginator.get_page(paginator, page_number)
@@ -160,11 +172,14 @@ def edit_stock(request, id):
         stocks.owner = request.user
         stocks.product_name = product_name
         stocks.description = description
+        stocks.stock_S = stock_S
+        stocks.stock_M = stock_M
+        stocks.stock_L = stock_L
         stocks.stock = stock
         stocks.product_price = product_price
         stocks.dateupdated = timezone.now()
 
-        stocks.save(update_fields=['owner', 'product_name', 'product_price', 'description', 'stock', 'dateupdated'])
+        stocks.save(update_fields=['owner', 'product_name', 'product_price', 'description', 'stock_S', 'stock_M', 'stock_L', 'stock', 'dateupdated'])
         messages.success(request, 'Perubahan Produk Sukses!')
         return redirect('stocks')
 

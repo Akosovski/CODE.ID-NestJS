@@ -48,7 +48,7 @@
                     {% else %}
                         <p class="card-text">{{stock.product_price}}</p>
                     {% endif %}
-                    <p class="card-text" style="margin-top: -10px;">{{stock.code}}</p>
+                    <p class="card-text" style="margin-top: -10px;">{{stock.code}} - Total Stock : {{stock.total_stock}}</p>
                     <a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-md xpadd">Lihat Detail Produk</a>
                 </div>
             </div>
