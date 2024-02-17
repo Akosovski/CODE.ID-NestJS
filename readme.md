@@ -23,3 +23,4 @@
 ## Upcoming Features ✨
 
 - Product Tracker
+- Invoice Creator

@@ -24,13 +24,9 @@
             <a class="nav-link active fs-5" aria-current="page" href="{% url 'search-stock' %}">Cari Produk</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link muted fs-5" aria-current="page" href="#">Produk Keluar</a>
-          </li>
-
           <form action="{% url 'logout' %}" method="POST">
             {% csrf_token %}
-            <input class="nav-link btn btn-link fw-bold fs-5" type="submit" value="Sign out" style="color: black">
+            <input class="nav-link btn btn-link fw-bold fs-5" type="submit" value="Keluar" style="color: black">
           </form>
       </div>
     </div>
