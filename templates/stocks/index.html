@@ -10,63 +10,49 @@
     <div class="mt-4">
         {% include 'partials/_messages.html' %}
     </div>
-
-    <h5 class="mt-3" style="text-align: center; font-weight: bold">Daftar Stock</h5>
-    <div class="container-fluid mt-1 border border-dark border-1 border-end-0 border-start-0" id="table-container">
-        <div class="app-table mt-2">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Kode</th>
-                        <th>Nama</th>
-                        <th>Harga</th>
-                        <th>Stock</th>
-                        <th>Size</th>
-                    </tr>
-                </thead>
-                {% if stocks.count %}
-                <tbody>
-                    {% for stock in page_obj %}
-                        <tr class="align-middle">
-                            <td>{{stock.code}}</td>
-                            <td>{{stock.product_name}}</td>
-                            <td>{{stock.product_price}}</td>
-                            <td>{{stock.stock}}</td>
-                            {% if stock.size == null %}
-                                <td class="text-muted">-</td>
-                            {% else %}
-                                <td>{{stock.size}}</td>
-                            {% endif %}
-                            <td><a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-sm xpadd">Detail Produk</a></td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
-                    <tr class="align-middle">
-                        <td class="text-muted">Kosong</td>
-                        <td class="text-muted">Kosong</td>
-                        <td class="text-muted">Kosong</td>
-                        <td class="text-muted">Kosong</td>
-                        <td class="text-muted">Kosong</td>
-                        <td class="text-muted"></td>
-                    </tr>
-                </tbody> 
-                {% endif %}
-            </table>
-        </div>
     
-        <div class="container d-flex justify-content-md-end justify-content-sm-center mb-0" id="pagination-container">
-            <div class="mt-2 m-3">
-                Page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
+    <h5 class="mt-3" style="text-align: center; font-weight: semi-bold">Daftar Stock Produk</h5>
+
+    <div class="d-flex flex-wrap justify-content-center">
+        {% if stocks.count %}
+            {% for stock in page_obj %}
+            <div class="card m-3 p-1" style="width: 18rem;">
+                <div class="wrapper" style="height: 300px; display: inline-block">
+                    <img src="https://storage.googleapis.com/tieksfashion-productstock/asia-southeast2/{{stock.product_image}}" 
+                class="card-img-top bg-secondary rounded-2" style="object-fit: contain">
+                </div>
+                <div class="card-body bg-white">
+                    <h5 class="card-title">{{stock.product_name}}</h5>
+                    <hr></hr>
+                    {% if stock.product_price == 1000 %}
+                        <p class="card-text text-danger">Tidak Ada Harga</p>
+                    {% else %}
+                        <p class="card-text">{{stock.product_price}}</p>
+                    {% endif %}
+                    <p class="card-text" style="margin-top: -10px;">{{stock.code}}</p>
+                    <a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-md xpadd">Lihat Detail Produk</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div id="indicator">
+            <h4 style="margin-left: 0.1vw; margin-top: 16px; margin-bottom: 16px; font-weight: 300; color: brown;">Stock Produk Kosong</h4>
+        </div>
+        {% endif %}
+    </div>
+        <div class="container d-flex justify-content-center mb-0" id="pagination-container">
+            <div class="mt-4 m-3">
+                Halaman {{page_obj.number}} dari {{ page_obj.paginator.num_pages }}
             </div>
             <div class="">     
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
                     <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link text-dark" href="?page=1">&laquo; 1</a></li>
-                    <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">Back</a></li>
+                    <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">Kembali</a></li>
                     {% endif %}
             
                     {% if page_obj.has_next %}
-                    <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                    <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">Selanjutnya</a></li>
                     <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
                     {% endif %}
                 </ul>           

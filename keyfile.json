@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "our-bebop-414107",
+  "private_key_id": "cb96d156b66aa9d1776c14aa454e37c0d576de39",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDHhddLMam3wYnH\nI1GvUbwTF4OdesF5WO0BGhgH/lKLFtHoEiLxkjU99fSUmfm/OLj7en1jTk91WwmQ\nHiClive7hwQbgP7BscDPFfdAbDDL8c0sJ5OCCm0iMOTMoU69Vc1qz2qxGZCZ3Q+Y\n1VTz2BBWaK9yU468WPGXkrbm2KcFPTNfjW0fjq8RlJxmmWhpLMepB4KjZmbIGHrd\n3UWgCuShnOu3D532mk3bCVQjpxBIm20Qn7jATvZBSaLfXhYc6egPuP/3o7v2rHe1\nZltFj2Bh71zXtaGVKRm56jJDLn7/RVTa8vwWpkl3oXy02VIWCquppZgIvT7SmjZ5\nxXGDMX7bAgMBAAECggEAAUbyi1ksiHAVNTCdL72ashaW8ZWdEm1GyxiDKd3vYlOJ\nkW44SgqRC6383EymBBrVWEq+7blNGee0xnbi55xdnJYvKQvo1Y2ROeIenIt0voF0\nOkGgmJb/ftYISOUJb33SnEnqmWqb+dgn5ucKrarm4960rMsrITqChWFbiVu+qfJo\n8T/799MUXM8PnPxTJ78fQkOvDsuM/TxNLmzsT/1Kv87ZlNe3xjXy1wvi+1pZ4/l7\nUHBgnLOD+hLNpL3RWJRN7CGt6U+sMKjsYya3lD+YkanHT6P99d46py61d4D/1Ya1\nQjC9FDIStIW/i2gMV4C+p8gYjzyGSQNof9H7lNGPCQKBgQDv9w8ha3Hv2tIWpDXi\n1TK6C0s/PSJnshF57oDLygo6cOV1ExP+6mVC6aL7C+3apjqwpmjfTHdfxXlGtn5T\nNMzzBQCnGrWUzsAVlRwTUf2PjJPCNrVeNGuQG/jZqfwS0utbrQrYYU3o5Fk25RFu\n66xtqjIfl0fBa5F0JAbuGctQ8wKBgQDU2vXFkLBQN2qxqzyvViwXJPDacwO/I+K+\nlZc4SZTPWsNuSN96eeqPrOnW9pEW7EvPr6p17wjo0CmhFzNP7/Rf3/DE4hDvubQ2\nJH+JkwsP1g+kv1QcaEC6fa8K94BUDYITe2kLCI05dgTMlSPiOAvDBC3/t0gDVE21\nr3ZCPHXUeQKBgQC0VWOOhvN6AGUv1LoWPIhBnikvXh8T9JMDogQyoiQrpRobcHnv\ncXEl5vSvW1iln5StmnFnlkyDsaChTpYCq8R1wUWrTvw012ctEQCnWE+IaGnGY1zL\nbfODujG6Se+AqfdrztA+qmllYu3UvjLqu7u6MlQ2v3aSWedWc5itqL7NlwKBgH4u\ny5HyQ0NahsqKi7AZsouJ36pwkmEGYg2/WmUI4cnGsaI4WxsdGRtRU1KW2s4vCIY3\nSiMdsDdr57HSsh2KT2FivTXKGmYyvY13N5AT9nPN33o33iH0/6JOja0/qfiqBVmN\nSGk9CZNtzkyFgT9DIF3cpXQ5b9xhZqv1N3Luqp9pAoGBANKmBoxUATThMqvxAoz3\nEpmINNgNCeuxHg0ZsCPov8pgrjzBwC34YtRPZxmdy/p47reN3pDgrAvUL440gbyl\n/F76S8jcrSD9vx4/IqXEUq99+Cdb4WpPfi02AMSdq9bmt0Zs7KH7Q+dx4CfJIZbC\nGy7yAo4IetjpIMXRuYBifMwl\n-----END PRIVATE KEY-----\n",
+  "client_email": "tieksfashion-productstock@our-bebop-414107.iam.gserviceaccount.com",
+  "client_id": "107128777805031578707",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tieksfashion-productstock%40our-bebop-414107.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

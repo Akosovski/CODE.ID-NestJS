@@ -17,7 +17,7 @@ from django.template.loader import render_to_string
 def index(request):
 
     stocks = Stock.objects.all()
-    paginator = Paginator(stocks, 15)
+    paginator = Paginator(stocks, 10)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
 
@@ -44,30 +44,32 @@ def add_stock(request):
         product_name = request.POST.get('product_name')
         description = request.POST.get('description')
         code = request.POST.get('category') + str(stacker)
+        stock_S = request.POST.get('stock_S')
+        stock_M = request.POST.get('stock_M')
+        stock_L = request.POST.get('stock_L')
         stock = request.POST.get('stock')
-        size = request.POST.get('size')
         product_price = request.POST.get('product_price')
-        # product_image = request.FILES.get('product_image')
+        product_image = request.FILES.get('product_image')
 
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
-            return render(request, 'stocks/index.html')
-        
-        if not description:
-            messages.error(request, 'Deskripsi Tidak Boleh Kosong!')
-            return render(request, 'stocks/index.html')
-        
-        if not product_price:
-            messages.error(request, 'Harga Tidak Boleh Kosong!')
-            return render(request, 'stocks/index.html')
-                
-        if not stock:
-            messages.error(request, 'Stock Tidak Boleh Kosong!')
             return render(request, 'stocks/index.html')
 
         if not code:
             messages.error(request, 'Kategori Harus Dipilih!')
             return render(request, 'stocks/index.html')
+        
+        if not product_price:
+            product_price = 1000
+
+        if not stock_S:
+            stock_S = 0
+        if not stock_M:
+            stock_M = 0
+        if not stock_L:
+            stock_L = 0
+        if not stock:
+            stock = 0   
 
         Stock.objects.create(
             owner=request.user, 
@@ -75,9 +77,12 @@ def add_stock(request):
             product_name=product_name, 
             product_price=product_price, 
             description=description,
-            size=size,
+            stock_S=stock_S, 
+            stock_M=stock_M, 
+            stock_L=stock_L, 
             stock=stock, 
             product_stack=stacker,
+            product_image=product_image,
             dateadded=timezone.now(),
             dateupdated=timezone.now()
         )
@@ -130,34 +135,34 @@ def edit_stock(request, id):
     if request.method == 'POST':
         product_name = request.POST.get('product_name')
         description = request.POST.get('description')
-        code = request.POST.get('code')
+        stock_S = request.POST.get('stock_S')
+        stock_M = request.POST.get('stock_M')
+        stock_L = request.POST.get('stock_L')
         stock = request.POST.get('stock')
         product_price = request.POST.get('product_price')
-        # product_image = request.POST.get('product_image')
 
         if not product_name:
             messages.error(request, 'Nama Tidak Boleh Kosong!')
-            return render(request, 'stocks/edit_stock.html', context)
-        
-        if not description:
-            messages.error(request, 'Deskripsi Tidak Boleh Kosong!')
-            return render(request, 'stocks/index.html', context)
+            return render(request, 'stocks/index.html')
         
         if not product_price:
-            messages.error(request, 'Harga Tidak Boleh Kosong!')
-            return render(request, 'stocks/index.html', context)
-                
+            product_price = 1000
+
+        if not stock_S:
+            stock_S = 0
+        if not stock_M:
+            stock_M = 0
+        if not stock_L:
+            stock_L = 0
         if not stock:
-            messages.error(request, 'Stock Tidak Boleh Kosong!')
-            return render(request, 'stocks/edit_stock.html', context)
+            stock = 0   
         
         stocks.owner = request.user
         stocks.product_name = product_name
+        stocks.description = description
         stocks.stock = stock
         stocks.product_price = product_price
-        stocks.code = code
         stocks.dateupdated = timezone.now()
-        # stocks.product_image = product_image
 
         stocks.save(update_fields=['owner', 'product_name', 'product_price', 'description', 'stock', 'dateupdated'])
         messages.success(request, 'Perubahan Produk Sukses!')

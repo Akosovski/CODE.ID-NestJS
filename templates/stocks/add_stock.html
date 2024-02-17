@@ -6,7 +6,7 @@
     {% include 'partials/_navbar.html' %}
 </div>
 
-<div class="px-4 py-5 mt-5 mb-3 text-center">
+<div class="px-4 py-5 mt-5 mb-3">
     {% include 'partials/_messages.html' %}
     <form name="add-stock" action="{% url 'add-stock' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -14,51 +14,78 @@
         <!-- Form Inputs -->
         <div class="d-grid p-2 tambah-stock">
             <br>
-                <p class="text-dark fs-4" style="font-weight: bold">Tambah Stock Produk</p>
-                <div class="input-group rounded">
-                    <span class="input-group-text">Nama Produk</span>
-                    <input type="text" class="form-control" name="product_name" value="{{values.product_name}}" id="namefield" placeholder="Nama?" required>
+                <p class="text-dark fs-4" style="font-weight: semi-bold; text-align: center;">Penambahan Produk</p>
+                <hr class="mt-2 mb-3"></hr>
+                <div class="rounded">
+                    <span class="label-text">Nama Produk</span>
+                    <input type="text" class="form-control mt-2" name="product_name" value="{{values.product_name}}" id="namefield" placeholder="Nama Produk?" required>
                 </div>
 
-                <div class="input-group rounded mt-4">
-                    <span class="input-group-text">Deskripsi</span>
-                    <input type="text" class="form-control" name="description" value="{{values.description}}" id="descriptionfield" placeholder="Deskripsi?" required>
+                <div class="rounded mt-4">
+                    <span class="label-text">Deskripsi</span>
+                    <input type="text" class="form-control mt-2" name="description" value="{{values.description}}" id="descriptionfield" placeholder="Deskripsi?">
                 </div>
 
-                <div class="input-group rounded mt-4">
-                    <span class="input-group-text">Size</span>
-                    <input type="text" class="form-control" name="size" value="{{values.size}}" id="sizefield" placeholder="Size?" required>
-                </div>
-
-                <div class="input-group rounded mt-4">
-                    <span class="input-group-text">Harga</span>
-                    <input type="number" class="form-control" name="product_price" value="{{values.product_price}}" id="pricefield" placeholder="Harga?" required>
-                </div>
-    
-                <div class="input-group rounded mt-4">
-                    <span class="input-group-text">Stock</span>
-                    <input type="number" class="form-control" name="stock" value="{{values.stock}}" id="stockfield" placeholder="Stock?" required>
+                <hr class="mt-4 mb-3"></hr>
+                
+                <span class="label-text">Harga</span>
+                <div class="input-group rounded mt-2">
+                    <span class="input-group-text">IDR</span>
+                    <input type="number" class="form-control" name="product_price" value="{{values.product_price}}" id="pricefield" placeholder="Harga?">
                 </div>
 
                 <div class="input-group rounded mt-4">
                     <span class="input-group-text">Kategori</span>
                     <select class="form-select" aria-label="Default select example" name="category">
+                        <option name="category" value="KMJ">Kemeja</option>
+                        <option name="category" value="GMS">Gamis</option>
+                        <option name="category" value="BLS">Blouse</option>
+                        <option name="category" value="TNK">Tunik</option>
+                        <option name="category" value="KRD">Kerudung</option>
                         <option name="category" value="BAG">Tas</option>
                         <option name="category" value="PCH">Pouch</option>
-                        <option name="category" value="GMS">Gamis</option>
-                        <option name="category" value="KMJ">Kemeja</option>
-                        <option name="category" value="KRD">Kerudung</option>
                     </select>
                 </div>
 
-                <!-- <div class="input-group rounded mt-4">
-                    <label class="input-group-text" for="inputGroupFile01">Upload Gambar</label>
-                    <input type="file" class="form-control" id="inputGroupFile01" name="product_image" accept=".jpg,.jpeg,.png">
-                </div> -->
+                <hr class="mt-4 mb-3"></hr>
+
+                <div class="rounded">
+                    <img id="popover-image" src="https://www.svgrepo.com/show/62998/info.svg" width="18" height="18" class="flex-shrink-0" style="margin-top: -4px; margin-right: 4px;">
+                    <span class="form-label text-success" style="text-align: left;">Stock Tanpa Size untuk produk non-baju</span>
+                </div>
+
+                <hr class="mt-3 mb-3"></hr>
+
+                <div class="rounded">
+                    <span class="form-label" style="text-align: left;">Stock S/M</span>
+                    <input type="number" class="form-control mt-2" name="stock_S" value="{{values.stock_S}}" id="stockSfield" placeholder="Stock S/M?">
+                </div>
+
+                <div class="rounded mt-4">
+                    <span class="form-label" style="text-align: left;">Stock M/L</span>
+                    <input type="number" class="form-control mt-2" name="stock_M" value="{{values.stock_M}}" id="stockMfield" placeholder="Stock S/M?">
+                </div>
+
+                <div class="rounded mt-4">
+                    <span class="form-label" style="text-align: left;">Stock L/XL</span>
+                    <input type="number" class="form-control mt-2" name="stock_L" value="{{values.stock_L}}" id="stockLfield" placeholder="Stock S/M?">
+                </div>
+                
+                <div class="input-group rounded mt-4">
+                    <span class="input-group-text">Stock Tanpa Size</span>
+                    <input type="number" class="form-control" name="stock" value="{{values.stock}}" id="stockfield" placeholder="Stock?">
+                </div>
+
+                <hr class="mt-4 mb-3"></hr>
+
+                <div class="rounded">
+                    <label class="label-text" for="inputGroupFile01">Foto Produk</label>
+                    <input type="file" class="form-control mt-2" id="inputGroupFile01" name="product_image" accept=".jpg,.jpeg,.png">
+                </div>
 
                 <!-- Submit Button -->
                 <div class="d-grid p-1 mt-4">
-                    <input type="submit" value="Tambah" class="btn btn-success px-5 w-auto xpadd submit-button rounded">
+                    <input type="submit" value="Tambah Produk" class="btn btn-success px-5 w-auto xpadd submit-button rounded">
                 </div>  
         </div>
     </form>

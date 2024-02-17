@@ -13,12 +13,6 @@
         {% csrf_token %}
         <div class="d-flex justify-content-center mt-5">
             <h5 class="search-title" style="text-align: center; font-weight: bold">Pencarian Produk</h5>
-            <!-- Popover Info -->
-            <a type="button" class="btn" id="info-popover" data-bs-toggle="popover" data-bs-title="Search Guide" data-bs-content="Complete Date Format: YYYY-MM-DD HH:MM (Individual search is available)" data-bs-trigger="hover focus">
-                <label class="input-group-text" for="searchInput" style="background-color: white;">
-                    <img id="popover-image" src="https://www.svgrepo.com/show/62998/info.svg" width="18" height="18" class="flex-shrink-0">
-                </label>
-            </a> 
         </div>
         
         <!-- Search Bar -->
@@ -38,36 +32,35 @@
 
     <!-- Search Result Table -->
     {% if searcher != '' %}
+    <div class="d-flex flex-wrap justify-content-center">
         {% if stocks.count %}
-            <div class="container-fluid border border-dark border-1 border-end-0 border-start-0" id="table-container" style="display: block">
-                <div class="app-table mt-2">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Harga</th>
-                                <th>Stock</th>
-                                <th>Tanggal Diperbaharui</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for stock in page_obj %} 
-                                <tr class="align-middle">
-                                    <td>{{stock.code}}</td>
-                                    <td>{{stock.product_name}}</td>
-                                    <td>{{stock.product_price}}</td>
-                                    <td>{{stock.stock}}</td>
-                                    <td>{{stock.dateupdated}}</td>
-                                    <td><a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-sm xpadd">Detail Produk</a></td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    </table>
+            {% for stock in page_obj %}
+            <div class="card m-3 p-1" style="width: 18rem;">
+                <div class="wrapper" style="height: 300px; display: inline-block">
+                    <img src="https://storage.googleapis.com/tieksfashion-productstock/asia-southeast2/{{stock.product_image}}" 
+                class="card-img-top bg-secondary rounded-2" style="object-fit: contain">
                 </div>
-            
-                <div class="container d-flex justify-content-md-end justify-content-sm-center mb-0" id="pagination-container">
-                    <div class="mt-2 m-3">
+                <div class="card-body bg-white">
+                    <h5 class="card-title">{{stock.product_name}}</h5>
+                    <hr></hr>
+                    {% if stock.product_price == 1000 %}
+                        <p class="card-text text-danger">Tidak Ada Harga</p>
+                    {% else %}
+                        <p class="card-text">{{stock.product_price}}</p>
+                    {% endif %}
+                    <p class="card-text" style="margin-top: -10px;">{{stock.code}}</p>
+                    <a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-md xpadd">Lihat Detail Produk</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div id="indicator">
+                <h4 style="margin-left: 1vw; margin-top: 16px; font-weight: 300; color: brown;">Data Tidak Ditemukan</h4>
+            </div>
+        {% endif %}
+    </div>
+                <div class="container d-flex justify-content-center mb-0" id="pagination-container">
+                    <div class="mt-4 m-3">
                         Page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
                     </div>
                     <div class="">     
@@ -85,11 +78,6 @@
                     </div>
                 </div>
             </div>
-        {% else %}
-            <div id="indicator">
-                <h4 style="margin-left: 1vw; margin-top: 16px; font-weight: 300; color: brown;">Data Tidak Ditemukan</h4>
-            </div>
-        {% endif %}
     {% else %}
         <div class="container-fluid border border-dark border-1 border-end-0 border-start-0" id="table-container" style="display: none">
     {% endif %}   
