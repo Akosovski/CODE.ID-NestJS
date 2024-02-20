@@ -18,7 +18,7 @@ def index(request):
     
     stocks = stocks.annotate(
         total_stock=ExpressionWrapper(
-            F('stock_S') + F('stock_M') + F('stock_L') + F('stock'),
+            F('stock_S') + F('stock_M') + F('stock_L') + F('stock_XXL') + F('stock'),
             output_field=fields.IntegerField()
         )
     )
@@ -52,6 +52,7 @@ def add_stock(request):
         stock_S = request.POST.get('stock_S')
         stock_M = request.POST.get('stock_M')
         stock_L = request.POST.get('stock_L')
+        stock_XXL = request.POST.get('stock_XXL')
         stock = request.POST.get('stock')
         product_price = request.POST.get('product_price')
         product_image = request.FILES.get('product_image')
@@ -73,6 +74,8 @@ def add_stock(request):
             stock_M = 0
         if not stock_L:
             stock_L = 0
+        if not stock_XXL:
+            stock_XXL = 0
         if not stock:
             stock = 0   
 
@@ -85,6 +88,7 @@ def add_stock(request):
             stock_S=stock_S, 
             stock_M=stock_M, 
             stock_L=stock_L, 
+            stock_XXL=stock_XXL,
             stock=stock, 
             product_stack=stacker,
             product_image=product_image,
@@ -117,11 +121,12 @@ def search_stock(request):
         selector = request.POST.get('selector')
 
         stocks = Stock.objects.annotate(
-        total_stock=ExpressionWrapper(
-                F('stock_S') + F('stock_M') + F('stock_L') + F('stock'),
-                output_field=fields.IntegerField()
-            )
-        ).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
+            search=SearchVector(selector),
+            total_stock=ExpressionWrapper(
+                    F('stock_S') + F('stock_M') + F('stock_L') + F('stock_XXL') + F('stock'),
+                    output_field=fields.IntegerField()
+                )
+            ).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
         
         paginator = Paginator(stocks, 15)
         page_number = request.GET.get('page')
@@ -150,6 +155,7 @@ def edit_stock(request, id):
         stock_S = request.POST.get('stock_S')
         stock_M = request.POST.get('stock_M')
         stock_L = request.POST.get('stock_L')
+        stock_XXL = request.POST.get('stock_XXL')
         stock = request.POST.get('stock')
         product_price = request.POST.get('product_price')
 
@@ -166,6 +172,8 @@ def edit_stock(request, id):
             stock_M = 0
         if not stock_L:
             stock_L = 0
+        if not stock_XXL:
+            stock_XXL = 0
         if not stock:
             stock = 0   
         
@@ -175,11 +183,12 @@ def edit_stock(request, id):
         stocks.stock_S = stock_S
         stocks.stock_M = stock_M
         stocks.stock_L = stock_L
+        stocks.stock_XXL = stock_XXL
         stocks.stock = stock
         stocks.product_price = product_price
         stocks.dateupdated = timezone.now()
 
-        stocks.save(update_fields=['owner', 'product_name', 'product_price', 'description', 'stock_S', 'stock_M', 'stock_L', 'stock', 'dateupdated'])
+        stocks.save(update_fields=['owner', 'product_name', 'product_price', 'description', 'stock_S', 'stock_M', 'stock_L', 'stock_XXL', 'stock', 'dateupdated'])
         messages.success(request, 'Perubahan Produk Sukses!')
         return redirect('stocks')
 

@@ -13,6 +13,7 @@ class Stock(models.Model):
     stock_S = models.IntegerField(null=True, blank=True, default=0)
     stock_M = models.IntegerField(null=True, blank=True, default=0)
     stock_L = models.IntegerField(null=True, blank=True, default=0)
+    stock_XXL = models.IntegerField(null=True, blank=True, default=0)
     stock = models.IntegerField(null=True, blank=True, default=0)
     product_image = models.ImageField(null=True, blank=True, upload_to="images/")
     product_stack = models.IntegerField(default=1)
