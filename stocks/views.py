@@ -11,6 +11,8 @@ from django.contrib.auth.admin import User
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.template.loader import render_to_string
+from django.http import QueryDict
+from urllib.parse import urlencode
 
 @login_required(login_url = '/authentication/login')
 def index(request):
@@ -22,6 +24,8 @@ def index(request):
             output_field=fields.IntegerField()
         )
     )
+    stocks = stocks.order_by('product_name')
+
     paginator = Paginator(stocks, 8)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
@@ -100,34 +104,30 @@ def detail_stock(request, id):
 @login_required(login_url = '/authentication/login')
 def search_stock(request):
     if request.method == 'GET':
-        searcher = ""
-        context = {
-            'searcher': searcher,
-        }
-        return render(request, 'stocks/search_stock.html', context)
-
+        searcher = request.GET.get('search', '')
+    
     if request.method == 'POST':
         searcher = request.POST.get('search')
-        selector = request.POST.get('selector')
+        # selector = request.POST.get('selector') Currently only supports name searches
 
-        stocks = Stock.objects.annotate(
-            search=SearchVector(selector),
-            total_stock=ExpressionWrapper(
-                    F('stock_S') + F('stock_M') + F('stock_L') + F('stock_XXL') + F('stock'),
-                    output_field=fields.IntegerField()
-                )
-            ).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
+    stocks = Stock.objects.annotate(
+        total_stock=ExpressionWrapper(
+                F('stock_S') + F('stock_M') + F('stock_L') + F('stock_XXL') + F('stock'),
+                output_field=fields.IntegerField()
+            )
+        ).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
+    stocks = stocks.order_by('product_name')
+        
+    paginator = Paginator(stocks, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
-        paginator = Paginator(stocks, 8)
-        page_number = request.GET.get('page')
-        page_obj = Paginator.get_page(paginator, page_number)
-    
-        context = {
-            'stocks': stocks,
-            'searcher': searcher,
-            'page_obj': page_obj,
-        }
-        return render(request, 'stocks/search_stock.html', context)
+    context = {
+        'stocks': stocks,
+        'searcher': searcher,
+        'page_obj': page_obj,
+    }
+    return render(request, 'stocks/search_stock.html', context)
     
 @login_required(login_url = '/authentication/login')
 def edit_stock(request, id):

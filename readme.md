@@ -22,10 +22,5 @@
 
 ## Upcoming Features & Fixes ✨
 
----- ! IMPORTANT! ----
-- Fix Image Card Clipping
-- Fix Order by Name
-- Fix Search Next Page
-
 - Product Tracker
 - Invoice Creator
