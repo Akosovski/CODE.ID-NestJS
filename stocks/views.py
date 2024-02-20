@@ -22,7 +22,7 @@ def index(request):
             output_field=fields.IntegerField()
         )
     )
-    paginator = Paginator(stocks, 10)
+    paginator = Paginator(stocks, 8)
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
 
@@ -117,8 +117,8 @@ def search_stock(request):
                     output_field=fields.IntegerField()
                 )
             ).filter(Q(product_name__icontains=searcher) | Q(code__icontains=searcher))
-        
-        paginator = Paginator(stocks, 15)
+
+        paginator = Paginator(stocks, 8)
         page_number = request.GET.get('page')
         page_obj = Paginator.get_page(paginator, page_number)
     

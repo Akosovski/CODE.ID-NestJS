@@ -26,21 +26,7 @@
                 <div class="detail-text">
                     <h6 class="mb-0 fw-bold">Kategori</h6>
                     <p class="mb-0 opacity-75">
-                        {% if stock.code == 'GMS' %}
-                            Gamis 
-                        {% elif stock.code == 'KMJ' %}
-                            Kemeja
-                        {% elif stock.code == 'BLS' %}
-                            Blouse
-                        {% elif stock.code == 'TNK' %}
-                            Tunik
-                        {% elif stock.code == 'KRD' %}
-                            Kerudung
-                        {% elif stock.code == 'BAG' %}
-                            Tas
-                        {% elif stock.code == 'PCH' %}
-                            Pouch
-                        {% endif %}
+                        {{stock.code}}
                     </p>
                 </div>
                 <small class="opacity-50 text-nowrap"></small>

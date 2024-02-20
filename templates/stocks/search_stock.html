@@ -23,8 +23,6 @@
             </div>
             <select class="form-select mb-3 rounded" id="activity-selector" name="selector">
                 <option selected value="product_name">Nama</option>
-                <option value="code">Kategori</option>
-                <option value="dateupdated">Tanggal</option>
             </select>
             <input type="submit" value="Cari" class="btn btn-dark w-auto xpadd search-button rounded">
         </div>
@@ -48,21 +46,7 @@
                     {% else %}
                         <p class="card-text" target="_blank">{{stock.product_price}}</p>
                     {% endif %}
-                    <p class="card-text" style="margin-top: -10px;">{% if stock.code == 'GMS' %}
-                        Gamis 
-                    {% elif stock.code == 'KMJ' %}
-                        Kemeja
-                    {% elif stock.code == 'BLS' %}
-                        Blouse
-                    {% elif stock.code == 'TNK' %}
-                        Tunik
-                    {% elif stock.code == 'KRD' %}
-                        Kerudung
-                    {% elif stock.code == 'BAG' %}
-                        Tas
-                    {% elif stock.code == 'PCH' %}
-                        Pouch
-                    {% endif %} - Total Stock : {{stock.total_stock}}</p>
+                    <p class="card-text" style="margin-top: -10px;">{{stock.code}} - Total Stock : {{stock.total_stock}}</p>
                     <a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-md xpadd">Lihat Detail Produk</a>
                 </div>
             </div>
@@ -73,25 +57,25 @@
             </div>
         {% endif %}
     </div>
-                <div class="container d-flex justify-content-center mb-0" id="pagination-container">
-                    <div class="mt-4 m-3">
-                        Page {{page_obj.number}} of {{ page_obj.paginator.num_pages }}
-                    </div>
-                    <div class="">     
-                        <ul class="pagination">
-                            {% if page_obj.has_previous %}
-                            <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link text-dark" href="?page=1">&laquo; 1</a></li>
-                            <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">Back</a></li>
-                            {% endif %}
-                    
-                            {% if page_obj.has_next %}
-                            <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-                            <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
-                            {% endif %}
-                        </ul>           
-                    </div>
-                </div>
+        <div class="pagination-container container mb-0">
+            <div class="mt-3 me-3">
+                Halaman {{page_obj.number}} dari {{ page_obj.paginator.num_pages }}
             </div>
+            <div class="mt-2">     
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link text-dark" href="?page=1">&laquo; 1</a></li>
+                    <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.previous_page_number }}">Kembali</a></li>
+                    {% endif %}
+            
+                    {% if page_obj.has_next %}
+                    <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.next_page_number }}">Selanjutnya</a></li>
+                    <li class="page-item"> <a class="page-link text-dark" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+                    {% endif %}
+                </ul>           
+            </div>
+        </div>
+    </div>
     {% else %}
         <div class="container-fluid border border-dark border-1 border-end-0 border-start-0" id="table-container" style="display: none">
     {% endif %}   

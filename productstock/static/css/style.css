@@ -71,7 +71,18 @@
     filter: brightness(50%);
 }
 
+.pagination-container{
+    display: flex;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 650px) {
+    .pagination-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
     .detail-container{
         flex-direction: column;
         justify-content: center;
