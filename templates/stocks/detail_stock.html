@@ -24,8 +24,24 @@
         <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
             <div class="d-flex gap-2 w-100 detail-row">
                 <div class="detail-text">
-                    <h6 class="mb-0 fw-bold">Kode</h6>
-                    <p class="mb-0 opacity-75">{{stock.code}}</p>
+                    <h6 class="mb-0 fw-bold">Kategori</h6>
+                    <p class="mb-0 opacity-75">
+                        {% if stock.code == 'GMS' %}
+                            Gamis 
+                        {% elif stock.code == 'KMJ' %}
+                            Kemeja
+                        {% elif stock.code == 'BLS' %}
+                            Blouse
+                        {% elif stock.code == 'TNK' %}
+                            Tunik
+                        {% elif stock.code == 'KRD' %}
+                            Kerudung
+                        {% elif stock.code == 'BAG' %}
+                            Tas
+                        {% elif stock.code == 'PCH' %}
+                            Pouch
+                        {% endif %}
+                    </p>
                 </div>
                 <small class="opacity-50 text-nowrap"></small>
             </div>

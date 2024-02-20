@@ -27,9 +27,25 @@
                     {% if stock.product_price == 1000 %}
                         <p class="card-text text-danger">Tidak Ada Harga</p>
                     {% else %}
-                        <p class="card-text">{{stock.product_price}}</p>
+                        <p class="card-text">IDR {{stock.product_price}}</p>
                     {% endif %}
-                    <p class="card-text" style="margin-top: -10px;">{{stock.code}} - Total Stock : {{stock.total_stock}}</p>
+                    <p class="card-text" style="margin-top: -10px;">
+                        {% if stock.code == 'GMS' %}
+                            Gamis 
+                        {% elif stock.code == 'KMJ' %}
+                            Kemeja
+                        {% elif stock.code == 'BLS' %}
+                            Blouse
+                        {% elif stock.code == 'TNK' %}
+                            Tunik
+                        {% elif stock.code == 'KRD' %}
+                            Kerudung
+                        {% elif stock.code == 'BAG' %}
+                            Tas
+                        {% elif stock.code == 'PCH' %}
+                            Pouch
+                        {% endif %}
+                        - Total Stock : {{stock.total_stock}}</p>
                     <a href="{% url 'detail-stock' stock.id %}" class="btn btn-dark btn-md xpadd">Lihat Detail Produk</a>
                 </div>
             </div>

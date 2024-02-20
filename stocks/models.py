@@ -16,7 +16,6 @@ class Stock(models.Model):
     stock_XXL = models.IntegerField(null=True, blank=True, default=0)
     stock = models.IntegerField(null=True, blank=True, default=0)
     product_image = models.ImageField(null=True, blank=True, upload_to="images/")
-    product_stack = models.IntegerField(default=1)
     product_price = models.DecimalField(max_digits=12, decimal_places=2, default=1000)
 
     def __str__(self):

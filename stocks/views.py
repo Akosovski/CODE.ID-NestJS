@@ -35,20 +35,11 @@ def index(request):
 
 @login_required(login_url = '/authentication/login')
 def add_stock(request):
-    items = Stock.objects.all()
-    base_stock = sum(items.values_list('product_stack', flat=True))
-    stacker = 0
-
-    if base_stock == 0:
-        stacker += 1
-    else:
-        stacker = base_stock
 
     if request.method == 'POST':
-
         product_name = request.POST.get('product_name')
         description = request.POST.get('description')
-        code = request.POST.get('category') + str(stacker)
+        code = request.POST.get('category')
         stock_S = request.POST.get('stock_S')
         stock_M = request.POST.get('stock_M')
         stock_L = request.POST.get('stock_L')
@@ -90,7 +81,6 @@ def add_stock(request):
             stock_L=stock_L, 
             stock_XXL=stock_XXL,
             stock=stock, 
-            product_stack=stacker,
             product_image=product_image,
             dateadded=timezone.now(),
             dateupdated=timezone.now()
