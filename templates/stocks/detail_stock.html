@@ -75,7 +75,7 @@
                     {% if stock.product_price == 1000 %}
                         <p class="mb-0 text-danger">Tidak Ada Harga</p>
                     {% else %}
-                        <p class="mb-0 opacity-75">IDR {{stock.product_price}}</p>
+                        <p id="detailPrice" class="mb-0 opacity-75" target="_blank">{{stock.product_price}}</p>
                     {% endif %}
                     
                 </div>

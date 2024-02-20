@@ -27,7 +27,7 @@
                     {% if stock.product_price == 1000 %}
                         <p class="card-text text-danger">Tidak Ada Harga</p>
                     {% else %}
-                        <p class="card-text">IDR {{stock.product_price}}</p>
+                        <p class="card-text" target="_blank">{{stock.product_price}}</p>
                     {% endif %}
                     <p class="card-text" style="margin-top: -10px;">
                         {% if stock.code == 'GMS' %}
